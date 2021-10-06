@@ -1,0 +1,87 @@
+$blue:#228be6;
+$gray:#495057;
+$pink:#f06595;
+
+@mixin button-color($color) {
+  //색상을 mixin 이라는 기능을 사용하여 쉽게 재사용
+  background: $color;
+
+  &:hover {
+    background: lighten($color, 20%); //색상 20% 밝게
+  }
+
+  &:active {
+    background: darken($color, 20%); //색상 20% 어둡게
+  }
+
+  &.outline {
+    color: $color;
+    background: none;
+    border: 1px solid $color;
+
+    &:hover {
+      background: $color;
+      color: white;
+    }
+  }
+}
+
+.Button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  outline: none;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  //사이즈 관리
+  &.large {
+    height: 3rem;
+    font-size: 1.25rem;
+  }
+
+  &.medium {
+    height: 2.25rem;
+    font-size: 1rem;
+  }
+
+  &.small {
+    height: 1.75rem;
+    font-size: 0.875rem;
+  }
+
+  //색상 관리
+  &.blue {
+    @include button-color($blue); //mixin 사용 시 include
+  }
+
+  &.gray {
+    @include button-color($gray); //mixin 사용 시 include
+  }
+
+  &.pink {
+    @include button-color($pink); //mixin 사용 시 include
+  }
+
+
+  // & + & 가 의미 하는 것은 .Button + .Button 입니다. 만약 함께 있다면 우측에 있는 버튼에 여백을 설정 한 것이죠.
+  &+& {
+    margin-left: 1rem;
+  }
+
+  &.fullWidth {
+    width: 100%;
+    justify-content: center;
+
+    &+& {
+      margin-left: 0;
+      margin-top: 1rem;
+    }
+  }
+}
