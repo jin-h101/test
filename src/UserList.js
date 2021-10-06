@@ -24,7 +24,6 @@ const User = React.memo(function User({ user }) {
           dispatch({ type: 'REMOVE_USER', id: user.id });
         }}
       >
-        삭제
       </button>
     </div>
   );
